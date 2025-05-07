@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Infra.log - Transportes</title>
+</head>
+<body>
+<h1>Infra.log - Transportes</h1>
+<p>Descrição</p>
+<p>O objetivo desta documentação é registrar as regras atuais que compõem os OTDS dos dashboards de Infra.log;</p>
+<p>A meta de OTD atual considerada é de 97%;</p>
+<p>Atualmente a mensuração é feita em Dias úteis.</p>
+<p>Siglas</p>
+<p>OTD = On Time Delivery</p>
+<p>OTD CD = On Time Delivery do Centro de Distribuição</p>
+<p>OTD TRANSPORTADORA = On Time Delivery da Transportadora</p>
+<p>Dashboards contemplados</p>
+<p>Infra.Log - Transportes: É o dashboard visual da operação de transportes</p>
+<p>Link dashboard Produção:</p>
+<p>Infra.Log - Transportes (Base): É uma base somente para fins de extração de bases</p>
+<p>Link dashboard Produção:</p>
+<p>Filtros</p>
+<p>O filtro de referência de DATA utilizado no dashboard para identificar pedidos entregue DENTRO DO PRAZO e FORA DO PRAZO é o PRAZO DE ENTREGA;</p>
+<p>O OTD pode ser visualizado tanto por DATA DA 1ª TENTATIVA DE ENTREGA quanto pela DATA DE ENTREGA REAL;</p>
+<p>Exemplo abaixo:</p>
+<p>Ao selecionar o filtro de data de 01/06/2022 a 06/07/22, os OTDs estão sendo medido de acordo com os pedidos com o PRAZO DE ENTREGA prometido neste range.</p>
+<p>Possível filtrar também por Loja, Negócio, Status Transportadora e Serviço de Entrega.</p>
+<p>O OTD pode ser visto pelas seguintes dimensões:</p>
+<p>Estado (UF);</p>
+<p>Lojas;</p>
+<p>Transportadora;</p>
+<p>Canais de venda.</p>
+<h2>CÁLCULO OTD</h2>
+<p>OTD = [Número de Pedidos Entregues Dentro do Prazo] / ([Número de Pedidos Entregues Dentro do Prazo] + [Número de Pedidos Entregues Fora do Prazo])</p>
+<p>OTD CD = [Número de Pedidos Entregues e Despachados Dentro do Prazo de Doca] / ([Número de Pedidos Entregues e Despachados Dentro do Prazo de Doca] + [Número de Pedidos Entregues e Despachados Fora do Prazo de Doca])</p>
+<p>OTD TRANSPORTADORA = [Número de Pedidos Entregues Dentro do Prazo Prometido pela Transportadora] / ([Número de Pedidos Entregues Dentro do Prazo Prometido pela Transportadora] + [Número de Pedidos Entregues Fora do Prazo Prometido pela Transportadora])</p>
+<p>Regras OTD</p>
+<p>O range de data considerado é entre a DATA DE APROVAÇÃO do Pedido até a DATA DA 1ª TENTATIVA DE ENTREGA ou pela DATA DE ENTREGA REAL;</p>
+<p>Os pedidos com status ATRASADO são pedidos entregues FORA DO PRAZO DE ENTREGA prometido;</p>
+<p>Os pedidos com status DENTRO DO PRAZO são pedidos entregues DENTRO DO PRAZO DE ENTREGA prometido;</p>
+<p>Os pedidos com status EM ABERTO são pedidos EM ANDAMENTO que ainda estão dentro do SLA para ser entregue até o PRAZO DE ENTREGA prometido, por exemplo, pedidos faturados mas ainda não despachados mas dentro do PRAZO DE ENTREGA, ou pedidos despachados que não foram entregues mas ainda estão dentro do PRAZO DE ENTREGA, ou seja, são pedidos que ainda não possuem um status finalizador no MILLENNIUM e a na INTELIPOST;</p>
+<p>Os pedidos com status S/ INFORMAÇÃO são pedidos EM ANDAMENTO em que já passou da data de PRAZO DE ENTREGA prometida ao cliente mas ainda não recebeu da INTELIPOST a DATA DA 1ª TENTATIVA DE ENTREGA ou DATA DE ENTREGA REAL, portanto, não é possível mensurar se o pedido foi entregue DENTRO DO PRAZO ou FORA DO PRAZO.</p>
+<p>Regras OTD CD</p>
+<p>O range de data considerado é entre a DATA DE APROVAÇÃO do Pedido até a DATA DE DESPACHO/EMBARQUE;</p>
+<p>A regra para definir o status de um pedido para o OTD CD se baseia nos TEMPOS DE DOCA que é preenchido em uma planilha pelo time de Logística de maneira manual e precisa ser atualiza também de maneira manual pelo time de Data Viz quando solicitado via chamado, em geral, o tempo de doca para a maioria das lojas são 2 dias;</p>
+<p>O PRAZO DE DOCA é a DATA DE FATURAMENTO + TEMPO DE DOCA</p>
+<p>Os pedidos com status ATRASADO são pedidos entregues que NÃO cumpriram o PRAZO DE DOCA de acordo com as regras mencionadas acima;</p>
+<p>Os pedidos com status DENTRO DO PRAZO são pedidos entregues que cumpriram o PRAZO DE DOCA de acordo com as regras mencionadas acima;</p>
+<p>Os pedidos com status EM ABERTO são pedidos EM ANDAMENTO que ainda estão dentro do SLA do PRAZO DE DOCA de acordo com as regras mencionadas acima.</p>
+<p>Regras OTD TRANSPORTADORA</p>
+<p>A regra para definir o status de um pedido para o OTD TRANSPORTADORA se baseia nos TEMPOS DA TRANSPORTADORA que é calculado em 4 possíveis etapas da seguinte forma:</p>
+<p>Primeiramente os pedidos são procurados na Intelipost para trazer o Tempo prometido da transportadora;</p>
+<p>Para os pedidos que não encontram na Intelipost, existe uma segunda tentativa de cálculo desse TEMPO DA TRANSPORTADORA onde o é feita uma subtração em dias úteis do [PRAZO DE ENTREGA - DATA DO PEDIDO - TEMPOS DE DOCA DO CD];</p>
+<p>Quando o TEMPO DA TRANSPORTADORA é calculado com a regra acima, pode ocorrer de existirem números negativos, para esses casos de números negativos, existe uma terceira tentativa de procura o PRAZO DA TRANSPORTADORA na VTEX;</p>
+<p>Para os pedidos que sobram depois das 3 etapas anteriores, existe a última tentativa que é calculada se baseando em uma planilha do Sharepoint, contendo os campos de Transportadora, Faixas de CEP e o Tempo prometido da transportadora para cada transportadora.</p>
+<p>O range de data considerado é entre a DESPACHO/EMBARQUE do Pedido até a DATA DA 1ª TENTATIVA DE ENTREGA ou pela DATA DE ENTREGA REAL;</p>
+<p>Os pedidos com status ATRASADO são pedidos entregues FORA DO PRAZO DE ENTREGA prometido pela transportadora;</p>
+<p>Os pedidos com status DENTRO DO PRAZO são pedidos entregues DENTRO DO PRAZO DE ENTREGA prometido pela transportadora;</p>
+<p>Os pedidos com status EM ABERTO são pedidos EM ANDAMENTO que estão com status DESPACHADO e que ainda estão dentro do SLA para ser entregue até o PRAZO DE ENTREGA prometido pela transportadora, por exemplo, pedidos despachados que não foram entregues mas ainda estão dentro do PRAZO DE ENTREGA prometido pela transportadora, ou seja, são pedidos que ainda não possuem um status finalizador no MILLENNIUM e a na INTELIPOST.</p>
+<p>Exceções das regras</p>
+<p>Pedidos com data de aprovação em DIA ÚTIL e com HORA da aprovação depois das 16 horas da tarde, a data de aprovação é reajustada para considerar o PRÓXIMO DIA ÚTIL;</p>
+<p>Pedidos com serviço de entrega SAME DAY com data de aprovação em DIA ÚTIL e com HORA da aprovação depois das 11 horas da manhã, a data de aprovação é reajustada para considerar o PRÓXIMO DIA ÚTIL;</p>
+<p>Pedidos com serviço de entrega NEXT DAY com data de aprovação em DIA ÚTIL e com HORA da aprovação depois das 14 horas da tarde, a data de aprovação é reajustada para considerar o PRÓXIMO DIA ÚTIL.</p>
+<h2>FONTE DE DADOS</h2>
+<p>O dashboard consome de tabela desenvolvidas no Databricks, que por sua vez, consome de tabelas do ODS_MILLENNIUM_BR e ODS_INTELIPOST, ambas disponibilizadas pelo time de Engenharia de dados (Data Eng).</p>
+</body>
+</html>
