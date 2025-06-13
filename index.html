@@ -25,7 +25,7 @@
                     <button id="nav-vendas" class="nav-button active px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Vendas</button>
                     <button id="nav-b2b" class="nav-button active px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">B2b</button>
                     <button id="nav-financeiro" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Financeiro</button>
-                    <button id="nav-operações-& SAC" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Operações & SAC</button>
+                    <button id="nav-operações-e transportes" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Operações e transportes</button>
                     <button id="nav-tecnologia" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Tecnologia</button>
                     <button id="btn-faq" class="px-4 py-2 rounded-full text-sm md:text-base bg-blue-500 text-white hover:bg-blue-600 ml-4">FAQ Geral</button>
                 </nav>
@@ -40,7 +40,7 @@
             <section id="segment-vendas" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8"></section>
             <section id="segment-b2b" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8"></section>
             <section id="segment-financeiro" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
-            <section id="segment-operações-& SAC" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
+            <section id="segment-operações-e transportes" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
             <section id="segment-tecnologia" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
 
         </main>
@@ -76,17 +76,14 @@
                     <p class="text-gray-600">Atualmente, esta plataforma oferece uma visualização pré-definida dos dashboards. Para solicitações de personalização ou relatórios específicos, por favor, entre em contato via <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://brandlive-summa.atlassian.net/servicedesk/customer/portal/1746" target="_blank" rel="noopener noreferrer">Portal Infra.data</a>
                     </p>
                 </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Quais navegadores são compatíveis?</h3>
-                    <p class="text-gray-600">Esta aplicação é otimizada para os navegadores mais recentes, como Google Chrome, Mozilla Firefox, Microsoft Edge e Safari, garantindo a melhor experiência de visualização e interatividade.</p>
-                </div>
+
                 <div>
                     <h3 class="text-xl font-semibold text-gray-700 mb-2">Não encontrei o dashboard que procuro, o que devo fazer?</h3>
-                    <p class="text-gray-600">Verifique se você está no segmento correto (Vendas, Financeiro, Operações e Tecnologia.). Se ainda assim não encontrar, certifique-se de que o nome está correto na barra de pesquisa. Caso persista, entre em contato com o suporte para verificar a disponibilidade ou acesso do dashboard.</p>
+                    <p class="text-gray-600">Verifique se você está no segmento correto (Vendas, Financeiro, Operações e Tecnologia.). Se ainda assim não encontrar, certifique-se de que o nome está correto na barra de pesquisa. Caso persista, entre em <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://brandlive-summa.atlassian.net/servicedesk/customer/portal/1746" target="_blank" rel="noopener noreferrer">contato com o suporte para verificar a disponibilidade ou acesso do dashboard.</a></p>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold text-gray-700 mb-2">Como faço para entrar em contato com o suporte técnico?</h3>
-                    <p class="text-gray-600">Se precisar de suporte técnico adicional ou tiver dúvidas não abordadas aqui, por favor, entre em contato com a nossa equipe de TI através do canal de comunicação interno. As informações de contato específicas podem ser encontradas na intranet da empresa.</p>
+                    <p class="text-gray-600">Se precisar de suporte técnico adicional ou tiver dúvidas não abordadas aqui, por favor, <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://brandlive-summa.atlassian.net/servicedesk/customer/portal/1746" target="_blank" rel="noopener noreferrer">entre em contato com a nossa equipe TI através do canal de comunicação interno.</a></p>
                 </div>
             </div>
         </div>
@@ -107,24 +104,28 @@
             'one-company': {
                 description: 'Esta seção oferece uma visão detalhada do desempenho geral da empresa. Explore as métricas chave, tendências e análises qualitativas para entender o panorama atual e identificar oportunidades de crescimento.',
                 dashboards: [
-                    { id: 'onecompany-geral', title: 'Kpis operacionais', updateTimes: ['10:00 AM'], description: 'Consolida os principais da companhia, dando um overview de toda operação.' }
+                    { id: 'onecompany-geral', title: 'Kpis Operacionais', updateTimes: ['10:00 AM'], description: 'Consolida os principais da companhia, dando um overview de toda operação.' }
                 ],
                 faqs: [
-                    { title: 'Qual é o objetivo do dashboard "Kpis operacionais"?', description: 'O dashboard "Kpis operacionais" foi projetado para fornecer uma visão consolidada e de alto nível sobre os principais indicadores de desempenho da empresa, permitindo que gestores e líderes compreendam rapidamente a saúde geral da operação.' },
-                    { title: 'De onde vêm os dados do "Kpis operacionais"?', description: 'Os dados apresentados no "Kpis operacionais" são agregados de diversas fontes internas, incluindo sistemas de vendas, financeiros e operacionais, garantindo uma visão holística e atualizada.' }
+                    { title: 'Qual é o objetivo do dashboard "Kpis Operacionais"?', description: 'O dashboard "Kpis Operacionais" foi projetado para fornecer uma visão consolidada e de alto nível sobre os principais indicadores de desempenho da empresa, permitindo que gestores e líderes compreendam rapidamente a saúde geral da operação.' },
+                    { title: 'De onde vêm os dados do Kpis Operacionais"?', description: 'Os dados são extraídos do sheets <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/17wD_Q-tk1ow4vx6l9b5qzaSXlOt2Is3ZEZp3lwy4iC0/edit?gid=545519023#gid=545519023" target="_blank" rel="noopener noreferrer">Benchmark</a>' }
                 ]
             },
             'vendas': {
-                description: 'Esta seção oferece uma visão detalhada do desempenho de vendas da empresa. Explore as métricas chave, tendências e análises qualitativas para entender o panorama atual e identificar oportunidades de crescimento.',
+                description: 'Esta seção oferece uma visão detalhada de vendas da empresa. Explore as métricas chave, tendências e análises qualitativas para entender o panorama atual e identificar oportunidades de crescimento.',
                 dashboards: [
                     { id: 'vendas-desempenho', title: 'Desempenho de Vendas', updateTimes: ['05:30 AM', '08:30 AM', '14:30 PM', '18:30 PM'], description: 'Este dashboard foi desenvolvido com o objetivo de fornecer uma visão abrangente e interativa sobre o desempenho financeiro da companhia. Ele apresenta o faturamento realizado e as metas estabelecidas, segmentados por modelo de negócio (Business Model) e por lojas, permitindo uma análise comparativa e estratégica. Os usuários podem utilizar filtros e segmentações para refinar a análise por período, região, tipo de loja ou modelo de negócio, permitindo insights personalizados e acionáveis.' },
                 ],
                 faqs: [
-                    { title: 'Como posso filtrar os dados de vendas por região?', description: 'A maioria dos dashboards de vendas possui filtros interativos por região, tipo de loja ou período. Procure pelos campos de filtro na parte superior ou lateral do dashboard.' },
-                    { title: 'O que são GAP\'s B2B e por que são importantes?', description: 'GAP\'s B2B referem-se a lacunas ou perdas de faturamento decorrentes de cancelamentos de pedidos após a compra. Monitorá-los é crucial para entender a saúde financeira e identificar pontos de melhoria nos processos de vendas.' },
-                    { title: 'Existe um dashboard para análise de comissões de vendas?', description: 'Sim, o dashboard "Desempenho de Vendas" inclui métricas relacionadas a comissões, mas uma análise mais aprofundada pode ser encontrada em relatórios específicos de remuneração da equipe de vendas.' }
+                    { title: 'Qual a diferença entre faturado e captado?', description: 'O faturado considera todos os pedidos faturados com base na data de faturamento, desconsiderando os pedidos cancelados, e o captado considera todos os pedidos captados com base na data de cadastro do pedido. Valores de frete são calculados apenas com base nos pedidos faturados.' },
+                    { title: 'Quais são os conceitos de faturado para as lojas infrashop?', description: 'Em relação as lojas infrashop, quando apresentamos o valor faturado, ele corresponde ao valor aprovado. Isso se dá pelo fato de nosso FEE ser cobrado em cima do aprovado para clientes infrashop que não possuem integração com nossos ERPs e que o faturamento é de responsabilidade do seller.' },
+                    {
+                        title: 'Quais são as fontes de dados?', description: 'Millennium, IHUB, Infrashop, abacos, ecossys e venddor (abacos e ecossys contemplam os dados antes da migração para o millennium).'
+                    },
+                    { title: 'Quais são as fontes de dados das metas?', description: 'Os dados são extraídos do sheets <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/15dcqE4OkCE1TLWUxwlMZiJzC9G0LvZBV07hMQcY6yt8/edit?gid=548646968#gid=548646968" target="_blank" rel="noopener noreferrer">Metas S&OP / S&OE </a>' }
                 ]
             },
+
             'b2b': {
                 description: 'Esta seção foca nos indicadores e análises relacionadas ao segmento Business-to-Business (B2B).',
                 dashboards: [
@@ -135,7 +136,7 @@
                     { title: 'Este dashboard inclui funil de vendas B2B?', description: 'Sim, o dashboard de Monitoramento de GAP\'s B2B também pode apresentar dados sobre o funil de vendas, ajudando a identificar onde as perdas ocorrem no processo.' }
                 ]
             },
-            'operações-& SAC': {
+            'operações-e transportes': {
                 description: 'Acompanhe a eficiência de nossas operações, desde a produção até a logística. Entenda como otimizamos processos para garantir a qualidade e a agilidade na entrega dos nossos produtos/serviços.',
                 dashboards: [
                     { id: 'ops-logistica', title: 'Logística operação', updateTimes: ['08:30 AM', '10:30 AM', '13:30 PM', '16:30 PM', '19:30 PM'], description: ' O dashboard proporciona uma visão abrangente e integrada da cadeia logística, monitorando todas as etapas do ciclo do pedido — desde sua criação até o momento do faturamento. Ele também permite o acompanhamento da performance por Centro de Distribuição (CD), facilitando a gestão operacional e a tomada de decisões estratégicas. Oferece visibilidade completa da eficiência logística, identificando gargalos, atrasos e oportunidades de melhoria em todo o processo de atendimento de pedidos.' },
@@ -146,9 +147,12 @@
                     { id: 'ops-sync', title: 'SYNC', updateTimes: ['08:30 AM'], description: 'Kpis responsáveis por toda a operação logística da companhia.' },
                 ],
                 faqs: [
-                    { title: 'Como posso verificar o status de uma entrega?', description: 'O dashboard de "Transportes" permite acompanhar o status de entregas em tempo real, utilizando números de rastreamento ou identificadores de pedido.' },
-                    { title: 'Qual é o nosso nível atual de NPS?', description: 'O NPS (Net Promoter Score) é monitorado no dashboard "NPS", onde você pode ver a pontuação atual, tendências e feedbacks dos clientes que contribuem para a nota.' },
-                    { title: 'O que fazer se um pedido estiver fora do prazo na logística?', description: 'No dashboard de "Logística", é possível identificar atrasos. Para ações corretivas, contacte a equipa de logística responsável pelo Centro de Distribuição ou transportadora específica.' }
+                    { title: 'Como é calculado o OTD?', description: 'Quantidade de pedidos entregues dentro do prazo prometido ao cliente / Total de pedidos entregues' },
+                    { title: 'Qual a diferença entre o OTD cliente e OTD transportes?', description: 'No OTD cliente o cálculo é feito em cima do prazo acordado com o cliente final (consumidor), já no OTD transportes o índice é de acordo com o prazo acordado entre IFC e transportadora.' },
+                    { title: 'Qual a diferença entre o índice de primeira tentativa e o índice de OTD FULL?', description: 'Para o índice de primeira tentativa de entrega, quando é feito a tentativa de entrega para o consumidor final já é considerado como "no prazo", mesmo a entrega não sendo realizada. Para o OTD FULL (seja de cliente ou transportes), um pedido só pode ser considerado como "no prazo" quando a entrega é efetuada de fato.' },
+                    { title: 'Qual é a fonte de dados de NPS?', description: 'Os dados que alimentam o dashboard de NPS são da plataforma SOLUCX.' },
+                    { title: 'Qual é a fonte de dados de SAC?', description: '<p>55pbx - PHONE</p><p>idash - CHAT</p><p>odoo - Email e MKTP</p><p>weni - CHAT</p>' }
+
                 ]
             },
             'financeiro': {
@@ -159,12 +163,17 @@
                     { id: 'fin-tickets', title: 'Tickets', updateTimes: ['05:00 AM'], description: 'Este dashboard foi desenvolvido para monitorar e gerenciar as solicitações abertas pelos clientes direcionadas ao time de pagamentos. Ele oferece uma visão detalhada da quantidade de tickets gerados, seu status e a eficiência no atendimento, facilitando a priorização e o acompanhamento dos processos.' },
                     { id: 'fin-produtividade', title: 'Produtividade safe', updateTimes: ['05:00 AM'], description: 'O relatório Produtividade SAFE foi desenvolvido para monitorar e analisar as operações relacionadas à identificação de antifraudes dentro da companhia. Ele oferece uma visão detalhada sobre o desempenho da equipe de analistas, bem como o tempo gasto para detectar e solucionar possíveis fraudes.' },
                     { id: 'fin-despesas', title: 'Despesas', updateTimes: ['09:30 AM'], description: 'O relatório de Despesas mostras os custos e despesas da companhia a nível de centro de custo (protheus).' },
-                    { id: 'fin-painel', title: 'Painel controladoria', updateTimes: ['11:00 AM'], description: 'O relatório de Despesas mostras os custos e despesas da companhia a nível de centro de custo (protheus).' },
+                    { id: 'fin-painel', title: 'Painel controladoria', updateTimes: ['11:00 AM'], description: 'O relatório é gerado pelo time de controladoria, onde aborda as principais informações relacionada ao temas da área.' },
                 ],
                 faqs: [
-                    { title: 'Qual a diferença entre GMV e Receita Líquida?', description: 'GMV (Gross Merchandise Volume) representa o valor total das vendas, incluindo antes de deduções. Receita Líquida é o valor que a empresa realmente ganha após descontos, devoluções e impostos. O dashboard "GMV" mostra o volume bruto, enquanto "Receita e Lucratividade" detalha o líquido.' },
-                    { title: 'Como são calculados os chargebacks?', description: 'Chargebacks são contestações de transações feitas por clientes, resultando no estorno do valor. O dashboard "Pay" monitora a incidência e o impacto financeiro dos chargebacks, detalhando os motivos para análise e mitigação.' },
-                    { title: 'Onde posso ver o detalhe das despesas por centro de custo?', description: 'O dashboard de "Despesas" apresenta uma visão consolidada dos custos e despesas, e pode ser filtrado por centro de custo para uma análise mais granular conforme a necessidade do utilizador.' }
+                    { title: 'Como é realizado o cálculo de GMV?', description: 'Para o cálculo do GMV é somado o valor faturado, frete e impostos. Feito a ressalva para as lojas infrashop, que o cálculo é feito a partir do valor aprovado.' },
+                    {
+                        title: 'Como é calculado o FEE?', description: '<p>GMVA = GMV Acumulado no mês :</p>                            <p> Frange = Fee dentro de um range:</p><p>Fmin = Fee mínimo:</p><p>Ffixo = Fee Fixo:</p><p>Vfee = Valor do fee:</p><p>Vfee = MAX(GMVA * Frange(GMVA), Fmin ) + Ffixo.</p>'
+                    },
+                    { title: 'Qual a diferença entre faturado e líquido?', description: 'O faturado considera o valor dos pedidos faturados com base na data de emissão da nota fiscal, desconsiderando as notas cancelados, e o líquido considera o valor dos pedidos faturados menos o valor do frete.' },
+                    {
+                        title: 'Como é calculado o SER?', description: '<p>Take rate = De/para de lojas x erp x canal x negócio :</p>                          <p> MVA = GMV Acumulado no mês somente das vendas (Venda e Bonificação):</p><p>Ser = Take rate * GMVA </p>'
+                    }
                 ]
             },
             'tecnologia': {
@@ -174,10 +183,7 @@
                     { id: 'tech-tech', title: 'Tech', updateTimes: ['09:30 AM'], description: 'Este dashboard foi desenvolvido com o objetivo de monitorar e gerenciar os tickets abertos para a área de Sistemas, oferecendo uma visão completa e analítica sobre as demandas recebidas, seus motivos e a eficiência no atendimento. Ele permite o acompanhamento em tempo real do volume de tickets, status e prazos, facilitando a tomada de decisões e a priorização das atividades da equipe técnica.' }
                 ],
                 faqs: [
-                    { title: 'Não consigo aceder a um dashboard, o que devo fazer?', description: 'Primeiro, verifique a sua conexão com a internet. Se o problema persistir, certifique-se de que tem as permissões de acesso corretas. Se continuar sem acesso, por favor, abra um ticket no nosso sistema de suporte (Jira) ou entre em contato com a equipa de TI.' },
-                    { title: 'Os dados de um dashboard parecem desatualizados. Como confirmo?', description: 'Verifique o horário da última atualização indicado ao lado do nome do dashboard. Se o horário estiver desatualizado ou se suspeitar de um problema, contacte a equipa de Suporte de Dados ou abra um ticket.' },
-                    { title: 'Posso exportar os dados de um dashboard?', description: 'A funcionalidade de exportação de dados varia por dashboard. Alguns dashboards podem ter essa opção disponível diretamente na interface. Se precisar de uma exportação específica ou de um volume maior de dados, envie um pedido à equipa de BI através do Portal Infra.data.' },
-                    { title: 'Como posso solicitar um novo dashboard ou uma melhoria num existente?', description: 'Todas as solicitações de novos dashboards ou melhorias devem ser feitas através do nosso Portal de Solicitações no Jira. Lá, poderá descrever a sua necessidade e a equipa técnica irá analisar a viabilidade e prioridade.' }
+                    { title: 'Qual a fonte de dados dos dashboards de tecnologias?', description: 'Dados exclusivamente extraídos do jira.' },
                 ]
             }
         };
