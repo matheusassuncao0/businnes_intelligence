@@ -1,0 +1,23 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+.tab-button.active {
+  background-color: #84cc16; /* lime-500 */
+  color: white;
+  font-weight: 600;
+}
+.tab-button {
+  transition: all 0.3s ease;
+}
+.expand-toggle {
+  transition: transform 0.3s ease;
+  margin-left: 1rem; /* Adiciona espaço entre o preço e o ícone */
+}
+.expand-toggle.expanded {
+  transform: rotate(180deg);
+}
+
+.link {
+  text-decoration: underline;
+  color: black;
+}

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visão da Empresa - Relatório Interativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-white text-gray-800 p-4 shadow-lg">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+                <h1 class="text-2xl font-bold mb-4 md:mb-0">
+                    <img src="infra-data-logo-center.svg" alt="Infra.Data Logo" class="h-8 md:h-10 w-auto">
+                </h1>
+                <nav class="flex flex-wrap justify-center gap-2">
+                    <button id="nav-one-company" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">One Company</button>
+                    <button id="nav-vendas" class="nav-button active px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Vendas</button>
+                    <button id="nav-b2b" class="nav-button active px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">B2b</button>
+                    <button id="nav-financeiro" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Financeiro</button>
+                    <button id="nav-operações-& SAC" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Operações & SAC</button>
+                    <button id="nav-tecnologia" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Tecnologia</button>
+                    <button id="btn-faq" class="px-4 py-2 rounded-full text-sm md:text-base bg-blue-500 text-white hover:bg-blue-600 ml-4">FAQ Geral</button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
+            <div class="mb-6">
+                <input type="text" id="dashboardSearch" placeholder="Pesquisar dashboards..." class="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500 shadow-sm">
+            </div>
+            <section id="segment-one-company" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8"></section>
+            <section id="segment-vendas" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8"></section>
+            <section id="segment-b2b" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8"></section>
+            <section id="segment-financeiro" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
+            <section id="segment-operações-& SAC" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
+            <section id="segment-tecnologia" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
+
+        </main>
+
+        <footer class="bg-gray-800 text-white p-4 text-center mt-8">
+            <p>&copy; 2025 Infra.Data. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Modal do FAQ Geral -->
+    <div id="faq-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl relative max-h-[90vh] overflow-y-auto">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold">
+                &times;
+            </button>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Perguntas Frequentes (FAQ Geral)</h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Como os dados são atualizados?</h3>
+                    <p class="text-gray-600">Os dados dos dashboards são atualizados automaticamente em múltiplos horários ao longo do dia. O horário da última atualização para cada dashboard é indicado ao lado do seu nome, mostrando quando a informação foi processada mais recentemente.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Posso pesquisar dashboards em diferentes segmentos?</h3>
+                    <p class="text-gray-600">Sim, você pode pesquisar por nomes de dashboards usando a barra de pesquisa na parte superior da página. A pesquisa funciona dentro do segmento (aba) que está ativo no momento. Para pesquisar em outro segmento, basta selecioná-lo na barra de navegação superior e, em seguida, utilizar a pesquisa.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">O que significam os ícones de seta (▼) ao lado dos títulos?</h3>
+                    <p class="text-gray-600">O ícone de seta (▼) indica que você pode clicar no título do dashboard para expandir e ver uma descrição detalhada do que ele apresenta. Ao clicar novamente, a descrição será recolhida para otimizar o espaço na tela.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Há alguma forma de personalizar os dashboards?</h3>
+                    <p class="text-gray-600">Atualmente, esta plataforma oferece uma visualização pré-definida dos dashboards. Para solicitações de personalização ou relatórios específicos, por favor, entre em contato via <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://brandlive-summa.atlassian.net/servicedesk/customer/portal/1746" target="_blank" rel="noopener noreferrer">Portal Infra.data</a>
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Quais navegadores são compatíveis?</h3>
+                    <p class="text-gray-600">Esta aplicação é otimizada para os navegadores mais recentes, como Google Chrome, Mozilla Firefox, Microsoft Edge e Safari, garantindo a melhor experiência de visualização e interatividade.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Não encontrei o dashboard que procuro, o que devo fazer?</h3>
+                    <p class="text-gray-600">Verifique se você está no segmento correto (Vendas, Financeiro, Operações e Tecnologia.). Se ainda assim não encontrar, certifique-se de que o nome está correto na barra de pesquisa. Caso persista, entre em contato com o suporte para verificar a disponibilidade ou acesso do dashboard.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Como faço para entrar em contato com o suporte técnico?</h3>
+                    <p class="text-gray-600">Se precisar de suporte técnico adicional ou tiver dúvidas não abordadas aqui, por favor, entre em contato com a nossa equipe de TI através do canal de comunicação interno. As informações de contato específicas podem ser encontradas na intranet da empresa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const navButtons = document.querySelectorAll('.nav-button');
+        const segmentContents = document.querySelectorAll('.segment-content');
+        const searchInput = document.getElementById('dashboardSearch');
+        const btnFaq = document.getElementById('btn-faq');
+        const faqModal = document.getElementById('faq-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        let activeSegmentId = 'segment-one-company';
+
+        // Estrutura de dados dos dashboards
+        const dashboardsData = {
+            'one-company': {
+                description: 'Esta seção oferece uma visão detalhada do desempenho geral da empresa. Explore as métricas chave, tendências e análises qualitativas para entender o panorama atual e identificar oportunidades de crescimento.',
+                dashboards: [
+                    { id: 'onecompany-geral', title: 'One Company Overview', updateTimes: ['10:00 AM'], description: 'Consolida os principais da companhia, dando um overview de toda operação.' }
+                ],
+                faqs: [
+                    { title: 'Qual é o objetivo do dashboard "One Company Overview"?', description: 'O dashboard "One Company Overview" foi projetado para fornecer uma visão consolidada e de alto nível sobre os principais indicadores de desempenho da empresa, permitindo que gestores e líderes compreendam rapidamente a saúde geral da operação.' },
+                    { title: 'De onde vêm os dados do "One Company Overview"?', description: 'Os dados apresentados no "One Company Overview" são agregados de diversas fontes internas, incluindo sistemas de vendas, financeiros e operacionais, garantindo uma visão holística e atualizada.' }
+                ]
+            },
+            'vendas': {
+                description: 'Esta seção oferece uma visão detalhada do desempenho de vendas da empresa. Explore as métricas chave, tendências e análises qualitativas para entender o panorama atual e identificar oportunidades de crescimento.',
+                dashboards: [
+                    { id: 'vendas-desempenho', title: 'Desempenho de Vendas', updateTimes: ['05:30 AM', '08:30 AM', '14:30 PM', '18:30 PM'], description: 'Este dashboard foi desenvolvido com o objetivo de fornecer uma visão abrangente e interativa sobre o desempenho financeiro da companhia. Ele apresenta o faturamento realizado e as metas estabelecidas, segmentados por modelo de negócio (Business Model) e por lojas, permitindo uma análise comparativa e estratégica. Os usuários podem utilizar filtros e segmentações para refinar a análise por período, região, tipo de loja ou modelo de negócio, permitindo insights personalizados e acionáveis.' },
+                ],
+                faqs: [
+                    { title: 'Como posso filtrar os dados de vendas por região?', description: 'A maioria dos dashboards de vendas possui filtros interativos por região, tipo de loja ou período. Procure pelos campos de filtro na parte superior ou lateral do dashboard.' },
+                    { title: 'O que são GAP\'s B2B e por que são importantes?', description: 'GAP\'s B2B referem-se a lacunas ou perdas de faturamento decorrentes de cancelamentos de pedidos após a compra. Monitorá-los é crucial para entender a saúde financeira e identificar pontos de melhoria nos processos de vendas.' },
+                    { title: 'Existe um dashboard para análise de comissões de vendas?', description: 'Sim, o dashboard "Desempenho de Vendas" inclui métricas relacionadas a comissões, mas uma análise mais aprofundada pode ser encontrada em relatórios específicos de remuneração da equipe de vendas.' }
+                ]
+            },
+            'b2b': {
+                description: 'Esta seção foca nos indicadores e análises relacionadas ao segmento Business-to-Business (B2B).',
+                dashboards: [
+                    { id: 'vendas-b2b', title: 'Monitoramento de GAP\'s B2B', updateTimes: ['04:20 AM'], description: 'Este dashboard tem como objetivo monitorar e analisar os GAP\'s no faturamento de pedidos, causados por cancelamentos realizados após a finalização da compra pelo cliente. Ele oferece uma visão clara sobre o impacto financeiro dessas desistências, bem como seus principais motivos e padrões.' }
+                ],
+                faqs: [
+                    { title: 'Como os GAP\'s B2B são calculados?', description: 'Os GAP\'s B2B são calculados com base na diferença entre o faturamento esperado dos pedidos e o faturamento real após cancelamentos e ajustes. Inclui a análise dos motivos de cancelamento.' },
+                    { title: 'Este dashboard inclui funil de vendas B2B?', description: 'Sim, o dashboard de Monitoramento de GAP\'s B2B também pode apresentar dados sobre o funil de vendas, ajudando a identificar onde as perdas ocorrem no processo.' }
+                ]
+            },
+            'operações-& SAC': {
+                description: 'Acompanhe a eficiência de nossas operações, desde a produção até a logística. Entenda como otimizamos processos para garantir a qualidade e a agilidade na entrega dos nossos produtos/serviços.',
+                dashboards: [
+                    { id: 'ops-logistica', title: 'Logística operação', updateTimes: ['08:30 AM', '10:30 AM', '13:30 PM', '16:30 PM', '19:30 PM'], description: ' O dashboard proporciona uma visão abrangente e integrada da cadeia logística, monitorando todas as etapas do ciclo do pedido — desde sua criação até o momento do faturamento. Ele também permite o acompanhamento da performance por Centro de Distribuição (CD), facilitando a gestão operacional e a tomada de decisões estratégicas. Oferece visibilidade completa da eficiência logística, identificando gargalos, atrasos e oportunidades de melhoria em todo o processo de atendimento de pedidos.' },
+                    { id: 'ops-transportes', title: 'Transportes', updateTimes: ['09:30 AM'], description: 'Este dashboard foi desenvolvido com o objetivo de oferecer uma visão completa e analítica da cadeia de transportes, desde a criação do pedido até a entrega final ao cliente. Ele permite o acompanhamento preciso de prazos e entregas, comparando os compromissos assumidos pela loja OTD (Monitora o cumprimento do prazo prometido ao cliente no momento da compra, permitindo avaliar a precisão do compromisso comercial e a experiência do cliente final) e cumpridos pelas transportadoras OTD - Transportes (Acompanha o prazo estimado pela transportadora para a entrega, comparando com a data real de entrega. Permite avaliar a performance operacional dos parceiros logísticos).' },
+                    { id: 'ops-nps', title: 'NPS', updateTimes: ['09:30 AM'], description: 'Dashboard foi desenvolvido com o objetivo de monitorar e analisar os dados de NPS (Net Promoter Score) da companhia, permitindo uma compreensão aprofundada da experiência do cliente com base em suas avaliações. Ele oferece uma visão estratégica sobre a satisfação e a lealdade dos clientes, a partir das notas atribuídas e dos feedbacks coletados.' },
+                    { id: 'ops-sac', title: 'SAC', updateTimes: ['01:00 AM'], description: 'Este dashboard foi desenvolvido com o objetivo de monitorar e analisar os principais indicadores de SAC (Serviço de Atendimento ao Cliente), oferecendo visibilidade completa sobre o volume e a qualidade dos atendimentos realizados. Ele permite acompanhar os dados segmentados por tipo de contato, facilitando a identificação de demandas recorrentes e oportunidades de melhoria no relacionamento com o cliente.' },
+                    { id: 'ops-estoquefora', title: 'Estoque fora', updateTimes: ['07:30 AM'], description: '' },
+                    { id: 'ops-sync', title: 'SYNC', updateTimes: ['08:30 AM'], description: 'Kpis responsáveis por toda a operação logística da companhia.' },
+                ],
+                faqs: [
+                    { title: 'Como posso verificar o status de uma entrega?', description: 'O dashboard de "Transportes" permite acompanhar o status de entregas em tempo real, utilizando números de rastreamento ou identificadores de pedido.' },
+                    { title: 'Qual é o nosso nível atual de NPS?', description: 'O NPS (Net Promoter Score) é monitorado no dashboard "NPS", onde você pode ver a pontuação atual, tendências e feedbacks dos clientes que contribuem para a nota.' },
+                    { title: 'O que fazer se um pedido estiver fora do prazo na logística?', description: 'No dashboard de "Logística", é possível identificar atrasos. Para ações corretivas, contacte a equipa de logística responsável pelo Centro de Distribuição ou transportadora específica.' }
+                ]
+            },
+            'financeiro': {
+                description: 'Obtenha uma visão clara da saúde financeira da empresa. Esta seção consolida os principais indicadores, balanços e projeções para uma análise completa.',
+                dashboards: [
+                    { id: 'fin-GMV', title: 'GMV', updateTimes: ['10:10 AM'], description: 'Dashboard foi desenvolvido com o objetivo de monitorar e analisar o GMV (Gross Merchandise Volume) da companhia, fornecendo uma visão consolidada do valor total transacionado em vendas. Ele é essencial para acompanhar a performance comercial geral e avaliar a saúde do negócio.' },
+                    { id: 'fin-pay', title: 'Pay', updateTimes: ['05:00 AM'], description: 'Dashboard foi desenvolvido para oferecer uma visão consolidada e analítica dos processos financeiros relacionados a pagamentos, com foco em TPV, chargebacks e análise antifraude. Ele permite o acompanhamento detalhado do volume e da qualidade das transações, suportando a gestão financeira e a mitigação de riscos.' },
+                    { id: 'fin-tickets', title: 'Tickets', updateTimes: ['05:00 AM'], description: 'Este dashboard foi desenvolvido para monitorar e gerenciar as solicitações abertas pelos clientes direcionadas ao time de pagamentos. Ele oferece uma visão detalhada da quantidade de tickets gerados, seu status e a eficiência no atendimento, facilitando a priorização e o acompanhamento dos processos.' },
+                    { id: 'fin-produtividade', title: 'Produtividade safe', updateTimes: ['05:00 AM'], description: 'O relatório Produtividade SAFE foi desenvolvido para monitorar e analisar as operações relacionadas à identificação de antifraudes dentro da companhia. Ele oferece uma visão detalhada sobre o desempenho da equipe de analistas, bem como o tempo gasto para detectar e solucionar possíveis fraudes.' },
+                    { id: 'fin-despesas', title: 'Despesas', updateTimes: ['09:30 AM'], description: 'O relatório de Despesas mostras os custos e despesas da companhia a nível de centro de custo (protheus).' },
+                    { id: 'fin-painel', title: 'Painel controladoria', updateTimes: ['11:00 AM'], description: 'O relatório de Despesas mostras os custos e despesas da companhia a nível de centro de custo (protheus).' },
+                ],
+                faqs: [
+                    { title: 'Qual a diferença entre GMV e Receita Líquida?', description: 'GMV (Gross Merchandise Volume) representa o valor total das vendas, incluindo antes de deduções. Receita Líquida é o valor que a empresa realmente ganha após descontos, devoluções e impostos. O dashboard "GMV" mostra o volume bruto, enquanto "Receita e Lucratividade" detalha o líquido.' },
+                    { title: 'Como são calculados os chargebacks?', description: 'Chargebacks são contestações de transações feitas por clientes, resultando no estorno do valor. O dashboard "Pay" monitora a incidência e o impacto financeiro dos chargebacks, detalhando os motivos para análise e mitigação.' },
+                    { title: 'Onde posso ver o detalhe das despesas por centro de custo?', description: 'O dashboard de "Despesas" apresenta uma visão consolidada dos custos e despesas, e pode ser filtrado por centro de custo para uma análise mais granular conforme a necessidade do utilizador.' }
+                ]
+            },
+            'tecnologia': {
+                description: 'Explore as métricas chave, tendências e análises qualitativas da área de Tecnologia para entender o panorama atual e identificar oportunidades de crescimento e melhoria.',
+                dashboards: [
+                    { id: 'tech-kpis', title: 'KPIS jira', updateTimes: ['01:30 AM'], description: 'Dashboard desenvolvido com o objetivo de monitorar e gerenciar os tickets abertos para todas as áreas da companhia, oferecendo uma visão completa e analítica sobre as demandas recebidas, seus motivos e a eficiência no atendimento. Ele permite o acompanhamento em tempo real do volume de tickets, status e prazos, facilitando a tomada de decisões e a priorização das atividades da equipe técnica.' },
+                    { id: 'tech-tech', title: 'Tech', updateTimes: ['09:30 AM'], description: 'Este dashboard foi desenvolvido com o objetivo de monitorar e gerenciar os tickets abertos para a área de Sistemas, oferecendo uma visão completa e analítica sobre as demandas recebidas, seus motivos e a eficiência no atendimento. Ele permite o acompanhamento em tempo real do volume de tickets, status e prazos, facilitando a tomada de decisões e a priorização das atividades da equipe técnica.' }
+                ],
+                faqs: [
+                    { title: 'Não consigo aceder a um dashboard, o que devo fazer?', description: 'Primeiro, verifique a sua conexão com a internet. Se o problema persistir, certifique-se de que tem as permissões de acesso corretas. Se continuar sem acesso, por favor, abra um ticket no nosso sistema de suporte (Jira) ou entre em contato com a equipa de TI.' },
+                    { title: 'Os dados de um dashboard parecem desatualizados. Como confirmo?', description: 'Verifique o horário da última atualização indicado ao lado do nome do dashboard. Se o horário estiver desatualizado ou se suspeitar de um problema, contacte a equipa de Suporte de Dados ou abra um ticket.' },
+                    { title: 'Posso exportar os dados de um dashboard?', description: 'A funcionalidade de exportação de dados varia por dashboard. Alguns dashboards podem ter essa opção disponível diretamente na interface. Se precisar de uma exportação específica ou de um volume maior de dados, envie um pedido à equipa de BI através do Portal Infra.data.' },
+                    { title: 'Como posso solicitar um novo dashboard ou uma melhoria num existente?', description: 'Todas as solicitações de novos dashboards ou melhorias devem ser feitas através do nosso Portal de Solicitações no Jira. Lá, poderá descrever a sua necessidade e a equipa técnica irá analisar a viabilidade e prioridade.' }
+                ]
+            }
+        };
+
+        function renderDashboards(segmentKey, searchTerm = '') {
+            const segmentData = dashboardsData[segmentKey];
+            const segmentContainer = document.getElementById(`segment-${segmentKey}`);
+
+            // Renderiza o título e a descrição geral do segmento
+            segmentContainer.innerHTML = `
+                <h2 class="text-3xl font-bold text-gray-700 mb-4">${segmentKey.charAt(0).toUpperCase() + segmentKey.slice(1).replace('-', ' ')}</h2>
+                <p class="text-gray-600 leading-relaxed mb-6">${segmentData.description}</p>
+                <div class="space-y-6 mb-8" id="dashboards-list-${segmentKey}"></div>
+            `;
+            const dashboardListContainer = document.getElementById(`dashboards-list-${segmentKey}`);
+
+            // Renderiza os dashboards específicos do segmento
+            segmentData.dashboards.forEach(dashboard => {
+                const titleText = dashboard.title.toLowerCase();
+                if (titleText.includes(searchTerm.toLowerCase())) {
+                    const dashboardItem = document.createElement('div');
+                    dashboardItem.classList.add('bg-gray-50', 'rounded-xl', 'shadow', 'p-4', 'cursor-pointer', 'info-header');
+                    dashboardItem.dataset.target = dashboard.id;
+
+                    const updateTimesHtml = dashboard.updateTimes.map(time => `🕒 ${time}`).join(', ');
+
+                    dashboardItem.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                                ${dashboard.title}
+                                <span class="text-sm text-gray-500 ml-3">${updateTimesHtml}</span>
+                            </h3>
+                            <span class="expand-toggle text-2xl text-gray-500">▼</span>
+                        </div>
+                        <p id="${dashboard.id}" class="text-gray-600 mt-2 hidden">${dashboard.description}</p>
+                    `;
+                    dashboardListContainer.appendChild(dashboardItem);
+                }
+            });
+
+            // Re-attach event listeners for newly rendered dashboard headers
+            const newlyRenderedDashboardHeaders = segmentContainer.querySelectorAll('.info-header');
+            newlyRenderedDashboardHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const targetId = header.dataset.target;
+                    const targetElement = document.getElementById(targetId);
+                    const toggleIcon = header.querySelector('.expand-toggle');
+
+                    if (targetElement) {
+                        targetElement.classList.toggle('hidden');
+                        toggleIcon.classList.toggle('expanded');
+                    }
+                });
+            });
+
+            // Renderiza o FAQ específico do segmento, se houver
+            if (segmentData.faqs && segmentData.faqs.length > 0) {
+                const faqSection = document.createElement('div');
+                faqSection.classList.add('bg-white', 'rounded-2xl', 'shadow-xl', 'p-6', 'md:p-8', 'mt-8');
+                faqSection.innerHTML = `
+                    <h3 class="text-2xl font-bold text-gray-700 mb-4">Perguntas Frequentes (Q&A)</h3>
+                    <div class="space-y-6"></div>
+                `;
+                const faqListContainer = faqSection.querySelector('.space-y-6');
+
+                segmentData.faqs.forEach((faq, index) => {
+                    const faqItem = document.createElement('div');
+                    faqItem.classList.add('bg-gray-50', 'rounded-xl', 'shadow', 'p-4', 'cursor-pointer', 'info-header');
+                    faqItem.dataset.target = `faq-${segmentKey}-${index}`;
+
+                    faqItem.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-semibold text-gray-800">${faq.title}</h4>
+                            <span class="expand-toggle text-xl text-gray-500">▼</span>
+                        </div>
+                        <p id="faq-${segmentKey}-${index}" class="text-gray-600 mt-2 hidden">${faq.description}</p>
+                    `;
+                    faqListContainer.appendChild(faqItem);
+                });
+                segmentContainer.appendChild(faqSection);
+
+                // Re-attach event listeners for newly rendered FAQ headers
+                const newlyRenderedFaqHeaders = faqSection.querySelectorAll('.info-header');
+                newlyRenderedFaqHeaders.forEach(header => {
+                    header.addEventListener('click', () => {
+                        const targetId = header.dataset.target;
+                        const targetElement = document.getElementById(targetId);
+                        const toggleIcon = header.querySelector('.expand-toggle');
+
+                        if (targetElement) {
+                            targetElement.classList.toggle('hidden');
+                            toggleIcon.classList.toggle('expanded');
+                        }
+                    });
+                });
+            }
+        }
+
+        function showSegment(segmentId) {
+            segmentContents.forEach(segment => {
+                segment.classList.add('hidden');
+            });
+            navButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            const activeSegmentKey = segmentId.replace('segment-', '');
+
+            const activeSegmentElement = document.getElementById(segmentId);
+            const activeButton = document.getElementById(`nav-${activeSegmentKey}`);
+
+            if (activeSegmentElement) {
+                activeSegmentElement.classList.remove('hidden');
+                activeSegmentId = segmentId;
+                renderDashboards(activeSegmentKey, searchInput.value);
+            }
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const segmentId = `segment-${event.target.id.replace('nav-', '')}`;
+                showSegment(segmentId);
+            });
+        });
+
+        searchInput.addEventListener('input', () => {
+            const currentSegmentKey = activeSegmentId.replace('segment-', '');
+            renderDashboards(currentSegmentKey, searchInput.value);
+        });
+
+        showSegment('segment-one-company');
+
+        btnFaq.addEventListener('click', () => {
+            faqModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            faqModal.classList.add('hidden');
+        });
+
+        faqModal.addEventListener('click', (event) => {
+            if (event.target === faqModal) {
+                faqModal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
