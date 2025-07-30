@@ -3,571 +3,88 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visão da Empresa - Relatório Interativo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Adicionado para garantir que a classe 'hidden' funcione */
-        .hidden {
-            display: none !important;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portal de Informativos</title>
 
-        /* Adicionado para a animação da seta de expansão/colapso */
-        .expand-toggle {
-            transition: transform 0.2s ease-in-out;
-        }
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        script-src 'self' 'unsafe-inline';  style-src 'self' 'unsafe-inline';   img-src 'self' data:; 
+        font-src 'self'; 
+        connect-src 'self'; 
+        frame-ancestors 'self';             form-action 'self';                 ">
 
-        .expand-toggle.expanded {
-            transform: rotate(180deg);
-        }
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-        /* Estilo para o botão de navegação ativo */
-        .nav-button.active {
-            background-color: #3B82F6;
-            /* Cor azul do Tailwind (blue-500) */
-            color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            /* Sombra suave */
-        }
+    <meta name="referrer" content="no-referrer-when-downgrade">
 
-        .nav-button.active:hover {
-            background-color: #2563EB;
-            /* Tom mais escuro no hover */
-        }
-
-        /* Adicional: Garante que listas aninhadas não tenham bullets por padrão, se o Tailwind não fizer isso ou para sobrescrever */
-        .list-none ul {
-            list-style: none;
-        }
-    </style>
+    <link rel="stylesheet" href="complementares/style.css">
 </head>
 
 <body>
+    <header>
+        <h1>Infra.Data</h1>
+        <nav>
+            <a href="#">PT</a>
+            <a href="complementares/latam.html">ES</a>
+        </nav>
+    </header>
 
-    <div class="min-h-screen flex flex-col">
-        <header class="bg-white text-gray-800 p-4 shadow-lg">
-            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-                <h1 class="text-2xl font-bold mb-4 md:mb-0">
-                    <img src="infra-data-logo-center.svg" alt="Infra.Data Logo" class="h-8 md:h-10 w-auto">
-                </h1>
-                <nav class="flex flex-wrap justify-center gap-2">
-                    <button id="nav-one-company" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">One Company</button>
-                    <button id="nav-vendas" class="nav-button active px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Vendas</button>
-                    <button id="nav-B2B" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">B2B</button>
-                    <button id="nav-financeiro" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Financeiro</button>
-                    <button id="nav-operações-e transportes" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Operações e transportes</button>
-                    <button id="nav-tecnologia" class="nav-button px-4 py-2 rounded-full text-sm md:text-base bg-gray-200 hover:bg-gray-300">Tecnologia</button>
-                    <button id="btn-faq" class="px-4 py-2 rounded-full text-sm md:text-base bg-blue-500 text-white hover:bg-blue-600 ml-4">FAQ Geral</button>
-                </nav>
-            </div>
-        </header>
+    <main>
+        <section class="informativo1">
+            <h2>Vendas</h2>
+            <h3>Desempenho de Vendas</h3>
+            <p>Este dashboard foi desenvolvido com o objetivo de fornecer uma visão abrangente e interativa sobre o desempenho financeiro da companhia. Ele apresenta o faturamento realizado e as metas estabelecidas, segmentados por modelo de negócio (Business Model) e por lojas, permitindo uma análise comparativa e estratégica.
 
-        <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
-            <div class="mb-6">
-                <input type="text" id="dashboardSearch" placeholder="Pesquisar dashboards..." class="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500 shadow-sm">
-            </div>
-            <section id="segment-one-company" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8"></section>
-            <section id="segment-vendas" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8"></section>
-            <section id="segment-B2B" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
-            <section id="segment-financeiro" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
-            <section id="segment-operações-e transportes" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
-            <section id="segment-tecnologia" class="segment-content bg-white p-6 md:p-8 rounded-2xl shadow-xl mb-8 hidden"></section>
+                Os usuários podem utilizar filtros e segmentações para refinar a análise por período, região, tipo de loja ou modelo de negócio, permitindo insights personalizados e acionáveis.
+            </p>
+            <h3>Monitoramento de GAP's B2B</h3>
+            <p>
+                Este dashboard tem como objetivo monitorar e analisar os GAP’s no faturamento de pedidos, causados por cancelamentos realizados após a finalização da compra pelo cliente. Ele oferece uma visão clara sobre o impacto financeiro dessas desistências, bem como seus principais motivos e padrões.
+            </p>
+        </section>
 
-        </main>
+        <section class="informativo2">
+            <h2>Operações & SAC</h2>
+            <h3>Logística operação</h3>
+            <p>Este dashboard foi desenvolvido para proporcionar uma visão abrangente e integrada da cadeia logística, monitorando todas as etapas do ciclo do pedido — desde sua criação até o momento do faturamento. Ele também permite o acompanhamento da performance por Centro de Distribuição (CD), facilitando a gestão operacional e a tomada de decisões estratégicas. Oferece visibilidade completa da eficiência logística, identificando gargalos, atrasos e oportunidades de melhoria em todo o processo de atendimento de pedidos.</p>
 
-        <footer class="bg-gray-800 text-white p-4 text-center mt-8">
-            <p>&copy; 2025 Infra.Data. Todos os direitos reservados.</p>
-        </footer>
-    </div>
+            <h3>Transportes</h3>
+            <p>Este dashboard foi desenvolvido com o objetivo de oferecer uma visão completa e analítica da cadeia de transportes, desde a criação do pedido até a entrega final ao cliente. Ele permite o acompanhamento preciso de prazos e entregas, comparando os compromissos assumidos pela loja OTD (Monitora o cumprimento do prazo prometido ao cliente no momento da compra, permitindo avaliar a precisão do compromisso comercial e a experiência do cliente final) e cumpridos pelas transportadoras OTD - Transportes (Acompanha o prazo estimado pela transportadora para a entrega, comparando com a data real de entrega. Permite avaliar a performance operacional dos parceiros logísticos).</p>
 
-    <div id="faq-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 hidden z-50">
-        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl relative max-h-[90vh] overflow-y-auto">
-            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold">
-                &times;
-            </button>
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Perguntas Frequentes (FAQ Geral)</h2>
+            <h3>NPS</h3>
+            <p>Este dashboard foi desenvolvido com o objetivo de monitorar e analisar os dados de NPS (Net Promoter Score) da companhia, permitindo uma compreensão aprofundada da experiência do cliente com base em suas avaliações. Ele oferece uma visão estratégica sobre a satisfação e a lealdade dos clientes, a partir das notas atribuídas e dos feedbacks coletados. </p>
 
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Como os dados são atualizados?</h3>
-                    <p class="text-gray-600">Os dados dos dashboards são atualizados automaticamente em múltiplos horários ao longo do dia. O horário da última atualização para cada dashboard é indicado ao lado do seu nome, mostrando quando a informação foi processada mais recentemente.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Posso pesquisar dashboards em diferentes segmentos?</h3>
-                    <p class="text-gray-600">Sim, você pode pesquisar por nomes de dashboards usando a barra de pesquisa na parte superior da página. A pesquisa funciona dentro do segmento (aba) que está ativo no momento. Para pesquisar em outro segmento, basta selecioná-lo na barra de navegação superior e, em seguida, utilizar a pesquisa.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">O que significam os ícones de seta (▼) ao lado dos títulos?</h3>
-                    <p class="text-gray-600">O ícone de seta (▼) indica que você pode clicar no título do dashboard para expandir e ver uma descrição detalhada do que ele apresenta. Ao clicar novamente, a descrição será recolhida para otimizar o espaço na tela.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Há alguma forma de personalizar os dashboards?</h3>
-                    <p class="text-gray-600">Atualmente, esta plataforma oferece uma visualização pré-definida dos dashboards. Para solicitações de personalização ou relatórios específicos, por favor, entre em contato via <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://brandlive-summa.atlassian.net/servicedesk/customer/portal/1746" target="_blank" rel="noopener noreferrer">Portal Infra.data</a>
-                    </p>
-                </div>
+            <h3>SAC</h3>
+            <p>Este dashboard foi desenvolvido com o objetivo de monitorar e analisar os principais indicadores de SAC (Serviço de Atendimento ao Cliente), oferecendo visibilidade completa sobre o volume e a qualidade dos atendimentos realizados. Ele permite acompanhar os dados segmentados por tipo de contato, facilitando a identificação de demandas recorrentes e oportunidades de melhoria no relacionamento com o cliente.</p>
+        </section>
 
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Não encontrei o dashboard que procuro, o que devo fazer?</h3>
-                    <p class="text-gray-600">Verifique se você está no segmento correto (Vendas, Financeiro, Operações e Tecnologia.). Se ainda assim não encontrar, certifique-se de que o nome está correto na barra de pesquisa. Caso persista, entre em <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://brandlive-summa.atlassian.net/servicedesk/customer/portal/1746" target="_blank" rel="noopener noreferrer">contato com o suporte para verificar a disponibilidade ou acesso do dashboard.</a></p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Como faço para entrar em contato com o suporte técnico?</h3>
-                    <p class="text-gray-600">Se precisar de suporte técnico adicional ou tiver dúvidas não abordadas aqui, por favor, <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://brandlive-summa.atlassian.net/servicedesk/customer/portal/1746" target="_blank" rel="noopener noreferrer">entre em contato com a nossa equipe através do canal de comunicação interno.</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
+        <section class="informativo3">
+            <h2>Financeiro</h2>
+            <h3>GMV</h3>
+            <p>Este dashboard foi desenvolvido com o objetivo de monitorar e analisar o GMV (Gross Merchandise Volume) da companhia, fornecendo uma visão consolidada do valor total transacionado em vendas. Ele é essencial para acompanhar a performance comercial geral e avaliar a saúde do negócio.</p>
 
-    <script>
-        const navButtons = document.querySelectorAll('.nav-button');
-        const segmentContents = document.querySelectorAll('.segment-content');
-        const searchInput = document.getElementById('dashboardSearch');
-        const btnFaq = document.getElementById('btn-faq');
-        const faqModal = document.getElementById('faq-modal');
-        const closeModalBtn = document.getElementById('close-modal-btn');
+            <h3>Pay</h3>
+            <p>Este dashboard foi desenvolvido para oferecer uma visão consolidada e analítica dos processos financeiros relacionados a pagamentos, com foco em TPV, chargebacks e análise antifraude. Ele permite o acompanhamento detalhado do volume e da qualidade das transações, suportando a gestão financeira e a mitigação de riscos.</p>
 
-        let activeSegmentId = 'segment-vendas'; // Mantido como 'segment-vendas' para abrir nela.
+            <h3>Tickets</h3>
+            <p>Este dashboard foi desenvolvido para monitorar e gerenciar as solicitações abertas pelos clientes direcionadas ao time de pagamentos. Ele oferece uma visão detalhada da quantidade de tickets gerados, seu status e a eficiência no atendimento, facilitando a priorização e o acompanhamento dos processos.</p>
 
-        // Estrutura de dados dos dashboards
-        const dashboardsData = {
-            'one-company': {
-                description: 'Esta seção oferece uma visão detalhada do desempenho geral da empresa. Explore as métricas chave, tendências e análises qualitativas para entender o panorama atual e identificar oportunidades de crescimento.',
-                dashboards: [
-                    { id: 'onecompany-geral', title: 'Kpis Operacionais', updateTimes: ['10:00 AM'], description: 'Consolida os principais KPIS da companhia, dando um overview de toda operação.' }
-                ],
-                faqs: [
-                    { title: 'Qual é o objetivo do dashboard "Kpis Operacionais"?', description: 'O dashboard "Kpis Operacionais" foi projetado para fornecer uma visão consolidada e de alto nível sobre os principais indicadores de desempenho da empresa, permitindo que gestores e líderes compreendam rapidamente a saúde geral da operação.' },
-                    { title: 'De onde vêm os dados do Kpis Operacionais"?', description: 'Os dados são extraídos do sheets <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/17wD_Q-tk1ow4vx6l9b5qzaSXlOt2Is3ZEZp3lwy4iC0/edit?gid=545519023#gid=545519023" target="_blank" rel="noopener noreferrer">Benchmark</a>' }
-                ]
-            },
-            'vendas': {
-                description: 'Esta seção oferece uma visão detalhada de vendas da empresa. Explore as métricas chave, tendências e análises qualitativas para entender o panorama atual e identificar oportunidades de crescimento.',
-                dashboards: [
-                    { id: 'vendas-desempenho', title: 'Desempenho de Vendas', updateTimes: ['05:30 AM', '08:30 AM', '14:30 PM', '18:30 PM'], description: 'Este dashboard foi desenvolvido com o objetivo de fornecer uma visão abrangente e interativa sobre o desempenho financeiro da companhia. Ele apresenta o faturamento realizado e as metas estabelecidas, segmentados por modelo de negócio (Business Model) e por lojas, permitindo uma análise comparativa e estratégica. Os usuários podem utilizar filtros e segmentações para refinar a análise por período, região, tipo de loja ou modelo de negócio, permitindo insights personalizados e acionáveis.' },
-                ],
-                faqs: [
-                    {
-                        title: 'Como validar os dados de vendas no Millennium?',
-                        description: `
-                                <p><strong>Link do documento completo: </strong> <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/document/d/1LtX4ks_Hw1JSizno10bHaxBAcYZxp0uCdKspq9PBdUM/edit" target="_blank" rel="noopener noreferrer">passo a passo</a></p>
-                                
-                                <h4><strong>• Captado</strong></h4> 
-                                <p>Os pedidos <strong>captados</strong> são baseados somente na data da captação do pedido. O status do pedido não influencia nessa classificação.</p> 
-                                <p>Para consultar os valores Captados no Millennium, podemos utilizar 2 tipos de relatórios diferentes: Millennium ou Report Server.</p> 
-                                <ul> 
-                                    <p class="mt-4">
+            <h3>Produtividade safe</h3>
+            <p>O relatório Produtividade SAFE foi desenvolvido para monitorar e analisar as operações relacionadas à identificação de antifraudes dentro da companhia. Ele oferece uma visão detalhada sobre o desempenho da equipe de analistas, bem como o tempo gasto para detectar e solucionar possíveis fraudes.</p>
+        </section>
+        <section class="informativo4">
+            <h2>Tecnologia</h2>
+            <h3>Tech</h3>
+            <p>Este dashboard foi desenvolvido com o objetivo de monitorar e gerenciar os tickets abertos para a área de Sistemas, oferecendo uma visão completa e analítica sobre as demandas recebidas, seus motivos e a eficiência no atendimento. Ele permite o acompanhamento em tempo real do volume de tickets, status e prazos, facilitando a tomada de decisões e a priorização das atividades da equipe técnica.</p>
 
-</p>
-                                    <li>
-                                        <strong>ERP Millennium</strong>: Caminho onde está localizado o relatório: <strong>Vendas > Pedidos de Vendas</strong>. 
-                                        <p><strong>Filtros necessários:</strong></p> 
-                                        <ul class="list-none pl-4"> <li>- <strong>Loja</strong>: Filtrar pela loja</li> 
-                                            <li>- <strong>Data da emissão</strong>: Selecione o período desejado</li> 
-                                            <li>- <strong>Desc Tipo Pedido</strong>: Filtrar somente por Venda e Complemento</li> 
-                                            <li>- <strong>Valor Final</strong>: Somar a coluna "Valor Final" para obter o Valor Captado</li> 
-                                        </ul> 
-                                    </li> 
-                                </ul>
-                                
-                                <p class="mt-4">
+            <h3>KPIS jira</h3>
+            <p>Este dashboard foi desenvolvido com o objetivo de monitorar e gerenciar os tickets abertos para todas as áreas da companhia, oferecendo uma visão completa e analítica sobre as demandas recebidas, seus motivos e a eficiência no atendimento. Ele permite o acompanhamento em tempo real do volume de tickets, status e prazos, facilitando a tomada de decisões e a priorização das atividades da equipe técnica.</p>
+        </section>
+    </main>
 
-                              </p>
-                                <ul>
-                                    <li>
-                                        <strong>Report Server</strong>: Caminho onde está localizado o relatório: <strong>COM003 - Itens de Pedidos - Brasil</strong> (para E-HUB utilizar <strong>COM003 - Itens de Pedidos - EHUB</strong>) 
-                                        <p><strong>Filtros necessários:</strong></p> 
-                                        <ul class="list-none pl-4"> <li>- <strong>Data</strong>: Selecione o período desejado</li> 
-                                            <li>- <strong>TIPO_PEDIDO</strong>: Filtrar somente por Venda e Complemento</li> 
-                                            <li>- <strong>VALOR * QUANTIDADE</strong>: Multiplicando a coluna <strong>VALOR * QUANTIDADE</strong> teremos o valor de Captado</li> 
-                                        </ul> 
-                                    </li> 
-                                </ul> 
-                                
-                                <hr class="my-6 border-gray-300"> 
-                                
-                                <h4><strong>• Faturado</strong></h4> 
-                                <p>Os pedidos <strong>faturados</strong> são baseados em duas categorias: <strong>data do faturamento do pedido</strong> e os <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/1L03DBjjBDBVsEe-XpLPcVwgeC7xynkUzuHju0KxNSVA/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer"><strong>CFOPS de vendas e bonificação</strong></a> (Esse é o link da planilha com os CFOPS: <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/1L03DBjjBDBVsEe-XpLPcVwgeC7xynkUzuHju0KxNSVA/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">CFOPS de Vendas</a>). Para faturado é utilizado o conceito de <strong>GMV</strong> (conforme alinhado com o time de controladoria). O GMV é composto pelo valor faturado dos produtos + frete + impostos.</p> 
-                                <p>Para consultar os valores Faturados no Millennium, podemos utilizar 2 tipos de relatórios diferentes: Millennium ou Report Server.</p> 
-                                <ul>
-                                    <p class="mt-4">
-
-</p>
-                                    <li>
-                                        <strong>ERP Millennium</strong>: Caminho onde está localizado o relatório: <strong>Vendas > Status de NF-e</strong>.
-                                        <p><strong>Filtros necessários:</strong></p> 
-                                        <ul class="list-none pl-4"> <li>- <strong>Loja</strong>: Filtrar pela loja</li> 
-                                            <li>- <strong>Data</strong>: Selecione o período desejado</li> 
-                                            <li>- <strong>Situação</strong>: NF-e Autorizada</li> 
-                                            <li>- <strong>CFOP</strong>: Considerar somente CFOPS de vendas ou bonificação que constam nessa tabela: <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/1L03DBjjBDBVsEe-XpLPcVwgeC7xynkUzuHju0KxNSVA/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">CFOPS de Vendas</a></li> 
-                                            <li>- <strong>Valor</strong>: Somar a coluna valor para ter o valor faturado</li> 
-                                        </ul> 
-                                    </li> 
-                                    <p class="mt-4">
-
-</p>
-                                    <li>
-                                        <strong>Report Server</strong>: Caminho onde está localizado o relatório: <strong>Relatório Fiscal - Base BR</strong> (para E-HUB utilizar <strong>Relatório Fiscal - EHUB</strong>) 
-                                        <p><strong>Filtros necessários:</strong></p> 
-                                        <ul class="list-none pl-4"> <li>- <strong>Situação</strong>: S</li> 
-                                            <li>- <strong>CFOP</strong>: Considerar somente CFOPS de vendas ou bonificação que constam nessa tabela: <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/1L03DBjjBDBVsEe-XpLPcVwgeC7xynkUzuHju0KxNSVA/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">CFOPS de Vendas</a></li> 
-                                            <li>- <strong>TOTAL_BRUTO</strong>: Somar a coluna TOTAL_BRUTO</li> 
-                                            <li>- <strong>V_FRETE</strong>: Somar a coluna V_FRETE</li> 
-                                            <li>- <strong>VALOR_IPI</strong>: Somar a coluna VALOR_IPI (imposto)</li> 
-                                            <li>- <strong>FCP_ST</strong>: Somar a coluna FCP_ST (imposto)</li> 
-                                            <li>- <strong>TOTAL_BRUTO + V_FRETE + VALOR_IPI + FCP_ST</strong>: Somando essas 4 colunas teremos o valor faturado (GMV)</li> 
-                                        </ul> 
-                                    </li> 
-                                </ul>
-                            `
-                    },
-                    {
-                        title: 'Como validar os dados de vendas no IHUB?',
-                        description: `
-                                <p><strong>Link do documento completo: </strong> <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/document/d/1zyfMXlRTWaF7SM9S8tEm-z4EGm7wPo-XwHtuWhL9XoY/edit?tab=t.0" target="_blank" rel="noopener noreferrer">passo a passo</a></p>
-                                
-                                <h4><strong>• Captado</strong></h4> 
-                                <p>Os pedidos <strong>captados</strong> são baseados somente na data da captação do pedido. O status do pedido não influencia nessa classificação.</p> 
-                                <p>Para consultar os valores Captados no IHUB, utilizamos a opção <strong>lista de pedidos</strong> que fica dentro do menu <strong>pedidos</strong>.</p> 
-                                <ul> 
-                                    <p class="mt-4">
-
-</p>
-                                            <li>- <strong>Nome da loja</strong>: Selecione a loja desejada</li> 
-                                            <li>- <strong>Clique na opção "Exportar lista CSV"</strong>: Após clicar vai aparecer um sub-menu</li> 
-                                            <li>- <strong>Data inicial</strong>: Selecione o período desejado</li>
-                                            <li>- <strong>Data final</strong>: Selecione o período desejado</li>
-                                            <li>- <strong>Total item</strong>: Coluna referente ao valor Captado</li> 
-                                        </ul> 
-                                    </li> 
-                                </ul>
-                                
-                                <p class="mt-4">
-
-                              </p>
-                                
-                                
-                                <hr class="my-6 border-gray-300"> 
-                                
-                                <h4><strong>• Faturado</strong></h4> 
-                                <p>Os pedidos faturados são baseados em duas categorias: data do faturamento do pedido e <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/1L03DBjjBDBVsEe-XpLPcVwgeC7xynkUzuHju0KxNSVA/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">CFOPS de Vendas</a>. Para faturado é utilizado o conceito de GMV (conforme alinhado com o time de controladoria). O GMV é composto pelo valor faturado dos produtos + frete + impostos.
-O iHub não possui a opção de exportar, sendo assim é necessário consultar pedido a pedido através do relatório Notas Fiscais</p> 
-                                
-                            `
-
-                    },
-                    {
-                        title: 'Como validar os dados de vendas na VTEX?',
-                        description: `
-                                <p><strong>Link do documento completo: </strong> <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/document/d/1zyfMXlRTWaF7SM9S8tEm-z4EGm7wPo-XwHtuWhL9XoY/edit?tab=t.0" target="_blank" rel="noopener noreferrer">passo a passo</a></p>
-                                
-                                <h4><strong>• Captado</strong></h4> 
-                                <p>Os pedidos <strong>captados</strong> são baseados somente na data da captação do pedido. O status do pedido não influencia nessa classificação.</p> 
-                                <p>Para consultar os valores Captados na VTEX, utilizamos a opção <strong>todos os pedidos</strong> que fica dentro do menu <strong>pedidos</strong>.</p> 
-                                <ul> 
-                                    <p class="mt-4">
-                                        </p>
-                                            <li>- <strong>Clique na opção filtros</strong>: Após clicar vai aparecer um sub-menu</li> 
-                                            <li>- <strong>Data pedido</strong>: Selecione a opção "personalizada" e filtre pelo período desejado</li> 
-                                            <li>- <strong>Receita</strong>: Valor captado + frete (para desconsiderar o frete, é necessário exportar a base e somar a coluna "SKU Value").</li>
-                                            
-                                    <p class="mt-4">
-                                        </p> 
-                                        </ul> 
-                                    </li> 
-                                </ul>
-                                
-                                <p class="mt-4">
-
-                              </p>
-                                
-                                
-                                <hr class="my-6 border-gray-300"> 
-                                
-                                <h4><strong>• Faturado</strong></h4> 
-                                <p>Os pedidos faturados são baseados em duas categorias: data do faturamento do pedido e <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/1L03DBjjBDBVsEe-XpLPcVwgeC7xynkUzuHju0KxNSVA/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">CFOPS de Vendas</a>. Para faturado é utilizado o conceito de GMV (conforme alinhado com o time de controladoria). O GMV é composto pelo valor faturado dos produtos + frete + impostos.</p> 
-                                <p class="mt-4">
-
-</p>
-                                <p>Para a validação de pedidos Faturado utilizamos a opção todos os pedidos que fica dentro do menu <strong>pedidos</strong>.</p>
-                                <ul> 
-                                    <p class="mt-4">
-                                        </p>
-                                            <li>- <strong>Clique na opção filtros</strong>: Após clicar vai aparecer um sub-menu</li> 
-                                            <li>- <strong>Data pedido</strong>: Selecione a opção "personalizada" e filtre pelo período desejado</li> 
-                                            <li>- <strong>Receita</strong>: Valor faturado + Frete</li>
-                                            
-                                    <p class="mt-4">
-                                        </p> 
-                                        <p><strong>Observação</strong>: A data de faturamento que consta na VTEX é referente ao <strong>status de faturamento</strong>, já no relatório de Desempenho de Vendas é referente a <strong>data de emissão da Nota</strong>, por conta disso os valores podem não bater.
-</p>
-                                        </ul> 
-                                    </li> 
-                                </ul>
-
-                            `},
-                    { title: 'Qual a diferença entre faturado e captado?', description: 'O faturado considera todos os pedidos faturados com base na data de faturamento, desconsiderando os pedidos cancelados, e o captado considera todos os pedidos captados com base na data de cadastro do pedido. Valores de frete são calculados apenas com base nos pedidos faturados.' },
-                    { title: 'Quais são os conceitos de faturado para as lojas infrashop?', description: 'Em relação as lojas infrashop, quando apresentamos o valor faturado, ele corresponde ao valor aprovado. Isso se dá pelo fato de nosso FEE ser cobrado em cima do aprovado para clientes infrashop que não possuem integração com nossos ERPs e que o faturamento é de responsabilidade do seller.' },
-                    {
-                        title: 'Quais são as fontes de dados?', description: 'Millennium, IHUB, Infrashop, abacos, ecossys e venddor (abacos e ecossys contemplam os dados antes da migração para o millennium).'
-                    },
-                    { title: 'Quais são as fontes de dados das metas?', description: 'Os dados são extraídos do sheets <a class="underline font-bold text-blue-600 hover:text-blue-800" href="https://docs.google.com/spreadsheets/d/15dcqE4OkCE1TLWUxwlMZiJzC9G0LvZBV07hMQcY6yt8/edit?gid=548646968#gid=548646968" target="_blank" rel="noopener noreferrer">Metas S&OP / S&OE </a>' },
-                ]
-            },
-
-            'B2B': {
-                description: 'Esta seção foca nos indicadores e análises relacionadas ao segmento Business-to-Business (B2B).',
-                dashboards: [
-                    { id: 'vendas-B2B', title: 'Monitoramento de GAP\'s B2B', updateTimes: ['04:20 AM'], description: 'Este dashboard tem como objetivo monitorar e analisar os GAP\'s no faturamento de pedidos, causados por cancelamentos realizados após a finalização da compra pelo cliente. Ele oferece uma visão clara sobre o impacto financeiro dessas desistências, bem como seus principais motivos e padrões.' }
-                ],
-                faqs: [
-                    { title: 'Como os GAP\'s B2B são calculados?', description: 'Os GAP\'s B2B são calculados com base na diferença entre o faturamento esperado dos pedidos e o faturamento real após cancelamentos e ajustes. Inclui a análise dos motivos de cancelamento.' },
-                    { title: 'Este dashboard inclui funil de vendas B2B?', description: 'Sim, o dashboard de Monitoramento de GAP\'s B2B também pode apresentar dados sobre o funil de vendas, ajudando a identificar onde as perdas ocorrem no processo.' }
-                ]
-            },
-            'operações-e transportes': {
-                description: 'Acompanhe a eficiência de nossas operações, desde a produção até a logística. Entenda como otimizamos processos para garantir a qualidade e a agilidade na entrega dos nossos produtos/serviços.',
-                dashboards: [
-                    { id: 'ops-logistica', title: 'Logística operação', updateTimes: ['08:30 AM', '10:30 AM', '13:30 PM', '16:30 PM', '19:30 PM'], description: ' O dashboard proporciona uma visão abrangente e integrada da cadeia logística, monitorando todas as etapas do ciclo do pedido — desde sua criação até o momento do faturamento. Ele também permite o acompanhamento da performance por Centro de Distribuição (CD), facilitando a gestão operacional e a tomada de decisões estratégicas. Oferece visibilidade completa da eficiência logística, identificando gargalos, atrasos e oportunidades de melhoria em todo o processo de atendimento de pedidos.' },
-                    { id: 'ops-transportes', title: 'Transportes', updateTimes: ['09:30 AM'], description: 'Este dashboard foi desenvolvido com o objetivo de oferecer uma visão completa e analítica da cadeia de transportes, desde a criação do pedido até a entrega final ao cliente. Ele permite o acompanhamento preciso de prazos e entregas, comparando os compromissos assumidos pela loja OTD (Monitora o cumprimento do prazo prometido ao cliente no momento da compra, permitindo avaliar a precisão do compromisso comercial e a experiência do cliente final) e cumpridos pelas transportadoras OTD - Transportes (Acompanha o prazo estimado pela transportadora para a entrega, comparando com a data real de entrega. Permite avaliar a performance operacional dos parceiros logísticos).' },
-                    { id: 'ops-nps', title: 'NPS', updateTimes: ['09:30 AM'], description: 'Dashboard foi desenvolvido com o objetivo de monitorar e analisar os dados de NPS (Net Promoter Score) da companhia, permitindo uma compreensão aprofundada da experiência do cliente com base em suas avaliações. Ele oferece uma visão estratégica sobre a satisfação e a lealdade dos clientes, a partir das notas atribuídas e dos feedbacks coletados.' },
-                    { id: 'ops-sac', title: 'SAC', updateTimes: ['01:00 AM'], description: 'Este dashboard foi desenvolvido com o objetivo de monitorar e analisar os principais indicadores de SAC (Serviço de Atendimento ao Cliente), oferecendo visibilidade completa sobre o volume e a qualidade dos atendimentos realizados. Ele permite acompanhar os dados segmentados por tipo de contato, facilitando a identificação de demandas recorrentes e oportunidades de melhoria no relacionamento com o cliente.' },
-                    { id: 'ops-estoquefora', title: 'Estoque fora', updateTimes: ['07:30 AM'], description: '' },
-                    { id: 'ops-sync', title: 'SYNC', updateTimes: ['08:30 AM'], description: 'Kpis responsáveis por toda a operação logística da companhia.' },
-                    { id: 'ops-jornada', title: 'Jornada do pedido', updateTimes: ['06:30 AM', '16:00'], description: 'O dashboard de Jornada mapeia o ciclo completo de um pedido, desde sua aprovação até sua conclusão; apresenta quantidades de pedidos pendentes e concluídos em cada etapa mapeada, considerando as suas datas de início/final e também o tempo médio gasto em cada etapa. É possível também identificar os pedidos contidos em cada etapa e exportar para atuar sobre eles (caso dos pendentes): a ideia do painel é funcionar como uma ferramenta de trabalho, fornecendo insumos para os times identificarem gaps nas etapas e buscarem a excelência operacional.' },
-                ],
-                faqs: [
-                    { title: 'Como é calculado o OTD?', description: 'Quantidade de pedidos entregues dentro do prazo prometido ao cliente / Total de pedidos entregues' },
-                    { title: 'Qual a diferença entre o OTD cliente e OTD transportes?', description: 'No OTD cliente o cálculo é feito em cima do prazo acordado com o cliente final (consumidor), já no OTD transportes o índice é de acordo com o prazo acordado entre IFC e transportadora.' },
-                    { title: 'Qual a diferença entre o índice de primeira tentativa e o índice de OTD FULL?', description: 'Para o índice de primeira tentativa de entrega, quando é feito a tentativa de entrega para o consumidor final já é considerado como "no prazo", mesmo a entrega não sendo realizada. Para o OTD FULL (seja de cliente ou transportes), um pedido só pode ser considerado como "no prazo" quando a entrega é efetuada de fato.' },
-                    { title: 'Qual é a fonte de dados de NPS?', description: 'Os dados que alimentam o dashboard de NPS são da plataforma SOLUCX.' },
-                    { title: 'Qual é a fonte de dados de SAC?', description: '<p>55pbx - PHONE</p><p>idash - CHAT</p><p>odoo - Email e MKTP</p><p>weni - CHAT</p>' },
-                    {
-                        title: 'Qual o conceito de pedidos pendentes e concluídos na Jornada do Pedido?', description: `<strong>Pendentes:</strong> são os pedidos que passaram pela aprovação, e que ainda não foram entregues. Analisando as datas de conclusão de cada etapa (e datas em branco), conseguimos determinar em qual etapa cada pedido se encontra, e definir o seu tempo "parado" na etapa.
-                     <p class="mt-4">
-                                        </p>
-                                        <strong>Concluídos:</strong> são os pedidos que já tiveram entrega confirmada pelo TMS (estes pedidos também tiveram suas etapas mapeadas, com datas e tempos de conclusão).
-                     <p class="mt-4">
-                                        </p>      
-                                        Padronizamos as etapas e datas nos diferentes escopos de trabalho e marcas que temos hoje na IFC, visando o tempo decorrido como um todo.              
-                                        ` },
-                    {
-                        title: 'Qual é a fonte de dados da Jornada do Pedido?', description: ` <ul> 
-                                    <p class="mt-4">
-                                        </p>
-                                            <li><strong>ERP's</strong>: ihub, millennium e sistemas legado</li> 
-                                            <li><strong>WMS</strong>: senior</li> 
-                                            <li><strong>TMS</strong>: delivery hub e intelipost.</li>
-                                            
-                                    <p class="mt-4">
-                                        </p> 
-                                        </ul> 
-                                    </li> 
-                                </ul>` }
-
-                ]
-            },
-            'financeiro': {
-                description: 'Obtenha uma visão clara da saúde financeira da empresa. Esta seção consolida os principais indicadores, balanços e projeções para uma análise completa.',
-                dashboards: [
-                    { id: 'fin-GMV', title: 'GMV', updateTimes: ['10:10 AM'], description: 'Dashboard foi desenvolvido com o objetivo de monitorar e analisar o GMV (Gross Merchandise Volume) da companhia, fornecendo uma visão consolidada do valor total transacionado em vendas. Ele é essencial para acompanhar a performance comercial geral e avaliar a saúde do negócio.' },
-                    { id: 'fin-pay', title: 'Pay', updateTimes: ['05:00 AM'], description: 'Dashboard foi desenvolvido para oferecer uma visão consolidada e analítica dos processos financeiros relacionados a pagamentos, com foco em TPV, chargebacks e análise antifraude. Ele permite o acompanhamento detalhado do volume e da qualidade das transações, suportando a gestão financeira e a mitigação de riscos.' },
-                    { id: 'fin-tickets', title: 'Tickets', updateTimes: ['05:00 AM'], description: 'Este dashboard foi desenvolvido para monitorar e gerenciar as solicitações abertas pelos clientes direcionadas ao time de pagamentos. Ele oferece uma visão detalhada da quantidade de tickets gerados, seu status e a eficiência no atendimento, facilitando a priorização e o acompanhamento dos processos.' },
-                    { id: 'fin-produtividade', title: 'Produtividade safe', updateTimes: ['05:00 AM'], description: 'O relatório Produtividade SAFE foi desenvolvido para monitorar e analisar as operações relacionadas à identificação de antifraudes dentro da companhia. Ele oferece uma visão detalhada sobre o desempenho da equipe de analistas, bem como o tempo gasto para detectar e solucionar possíveis fraudes.' },
-                    { id: 'fin-despesas', title: 'Despesas', updateTimes: ['09:30 AM'], description: 'O relatório de Despesas mostras os custos e despesas da companhia a nível de centro de custo (protheus).' },
-                    { id: 'fin-painel', title: 'Painel controladoria', updateTimes: ['11:00 AM'], description: 'O relatório é gerado pelo time de controladoria, onde aborda as principais informações relacionada ao temas da área.' },
-                ],
-                faqs: [
-                    { title: 'Como é realizado o cálculo de GMV?', description: 'Para o cálculo do GMV é somado o valor faturado, frete e impostos. Feito a ressalva para as lojas infrashop, que o cálculo é feito a partir do valor aprovado.' },
-                    {
-                        title: 'Como é calculado o FEE?', description: '<p>GMVA = GMV Acumulado no mês :</p><p>Frange = Fee dentro de um range:</p><p>Fmin = Fee mínimo:</p><p>Ffixo = Fee Fixo:</p><p>Vfee = Valor do fee:</p><p>Vfee = MAX(GMVA * Frange(GMVA), Fmin ) + Ffixo.</p>'
-                    },
-                    { title: 'Qual a diferença entre faturado e líquido?', description: 'O faturado considera o valor dos pedidos faturados com base na data de emissão da nota fiscal, desconsiderando as notas cancelados, e o líquido considera o valor dos pedidos faturados menos o valor do frete.' },
-                    {
-                        title: 'Como é calculado o SER?', description: '<p>Take rate = De/para de lojas x erp x canal x negócio :</p><p>MVA = GMV Acumulado no mês somente das vendas (Venda e Bonificação):</p><p>Ser = Take rate * GMVA </p>'
-                    }
-                ]
-            },
-            'tecnologia': {
-                description: 'Explore as métricas chave, tendências e análises qualitativas da área de Tecnologia para entender o panorama atual e identificar oportunidades de crescimento e melhoria.',
-                dashboards: [
-                    { id: 'tech-kpis', title: 'KPIS jira', updateTimes: ['01:30 AM'], description: 'Dashboard desenvolvido com o objetivo de monitorar e gerenciar os tickets abertos para todas as áreas da companhia, oferecendo uma visão completa e analítica sobre as demandas recebidas, seus motivos e a eficiência no atendimento. Ele permite o acompanhamento em tempo real do volume de tickets, status e prazos, facilitando a tomada de decisões e a priorização das atividades da equipe técnica.' },
-                    { id: 'tech-tech', title: 'Tech', updateTimes: ['09:30 AM'], description: 'Este dashboard foi desenvolvido com o objetivo de monitorar e gerenciar os tickets abertos para a área de Sistemas, oferecendo uma visão completa e analítica sobre as demandas recebidas, seus motivos e a eficiência no atendimento. Ele permite o acompanhamento em tempo real do volume de tickets, status e prazos, facilitando a tomada de decisões e a priorização das atividades da equipe técnica.' }
-                ],
-                faqs: [
-                    { title: 'Qual a fonte de dados dos dashboards de tecnologias?', description: 'Dados exclusivamente extraídos do jira.' },
-                ]
-            }
-        };
-
-        function renderDashboards(segmentKey, searchTerm = '') {
-            const segmentData = dashboardsData[segmentKey];
-            const segmentContainer = document.getElementById(`segment-${segmentKey}`);
-
-            // Renderiza o título e a descrição geral do segmento
-            segmentContainer.innerHTML = `
-                    <h2 class="text-3xl font-bold text-gray-700 mb-4">${segmentKey.charAt(0).toUpperCase() + segmentKey.slice(1).replace('-', ' ')}</h2>
-                    <p class="text-gray-600 leading-relaxed mb-6">${segmentData.description}</p>
-                    <div class="space-y-6 mb-8" id="dashboards-list-${segmentKey}"></div>
-                `;
-            const dashboardListContainer = document.getElementById(`dashboards-list-${segmentKey}`);
-
-            // Renderiza os dashboards específicos do segmento
-            segmentData.dashboards.forEach(dashboard => {
-                const titleText = dashboard.title.toLowerCase();
-                if (titleText.includes(searchTerm.toLowerCase())) {
-                    const dashboardItem = document.createElement('div');
-                    dashboardItem.classList.add('bg-gray-50', 'rounded-xl', 'shadow', 'p-4', 'cursor-pointer', 'info-header');
-                    dashboardItem.dataset.target = dashboard.id;
-
-                    const updateTimesHtml = dashboard.updateTimes.map(time => `🕒 ${time}`).join(', ');
-
-                    dashboardItem.innerHTML = `
-                            <div class="flex justify-between items-center">
-                                <h3 class="text-xl font-semibold text-gray-800 flex items-center">
-                                    ${dashboard.title}
-                                    <span class="text-sm text-gray-500 ml-3">${updateTimesHtml}</span>
-                                </h3>
-                                <span class="expand-toggle text-2xl text-gray-500">▼</span>
-                            </div>
-                            <p id="${dashboard.id}" class="text-gray-600 mt-2 hidden">${dashboard.description}</p>
-                        `;
-                    dashboardListContainer.appendChild(dashboardItem);
-                }
-            });
-
-            // Re-attach event listeners for newly rendered dashboard headers
-            const newlyRenderedDashboardHeaders = segmentContainer.querySelectorAll('.info-header');
-            newlyRenderedDashboardHeaders.forEach(header => {
-                header.addEventListener('click', (event) => { // Adicionado 'event' para debug
-                    // Adicionados logs para debug
-                    console.log('--- Click no Header ---');
-                    console.log('Target do click:', event.target);
-                    console.log('Data-target do header:', header.dataset.target);
-
-                    const targetId = header.dataset.target;
-                    const targetElement = document.getElementById(targetId);
-                    const toggleIcon = header.querySelector('.expand-toggle');
-
-                    if (targetElement) {
-                        targetElement.classList.toggle('hidden');
-                        toggleIcon.classList.toggle('expanded');
-                        console.log(`Elemento ${targetId} agora ${targetElement.classList.contains('hidden') ? 'oculto' : 'visível'}`);
-                    } else {
-                        console.error(`Elemento com ID ${targetId} não encontrado.`);
-                    }
-                });
-            });
-
-            // Renderiza o FAQ específico do segmento, se houver
-            if (segmentData.faqs && segmentData.faqs.length > 0) {
-                const faqSection = document.createElement('div');
-                faqSection.classList.add('bg-white', 'rounded-2xl', 'shadow-xl', 'p-6', 'md:p-8', 'mt-8');
-                faqSection.innerHTML = `
-                        <h3 class="text-2xl font-bold text-gray-700 mb-4">Perguntas Frequentes (Q&A)</h3>
-                        <div class="space-y-6"></div>
-                    `;
-                const faqListContainer = faqSection.querySelector('.space-y-6');
-
-                segmentData.faqs.forEach((faq, index) => {
-                    const faqItem = document.createElement('div');
-                    faqItem.classList.add('bg-gray-50', 'rounded-xl', 'shadow', 'p-4', 'cursor-pointer', 'info-header');
-                    faqItem.dataset.target = `faq-${segmentKey}-${index}`;
-
-                    faqItem.innerHTML = `
-                            <div class="flex justify-between items-center">
-                                <h4 class="text-lg font-semibold text-gray-800">${faq.title}</h4>
-                                <span class="expand-toggle text-xl text-gray-500">▼</span>
-                            </div>
-                            <div id="faq-${segmentKey}-${index}" class="text-gray-600 mt-2 hidden">
-                                ${faq.description}
-                            </div>
-                        `;
-                    faqListContainer.appendChild(faqItem);
-                });
-                segmentContainer.appendChild(faqSection);
-
-                // Re-attach event listeners for newly rendered FAQ headers
-                const newlyRenderedFaqHeaders = faqSection.querySelectorAll('.info-header');
-                newlyRenderedFaqHeaders.forEach(header => {
-                    header.addEventListener('click', (event) => { // Adicionado 'event' para debug
-                        // Adicionados logs para debug
-                        console.log('--- Click no FAQ Header ---');
-                        console.log('Target do click:', event.target);
-                        console.log('Data-target do header:', header.dataset.target);
-
-                        const targetId = header.dataset.target;
-                        const targetElement = document.getElementById(targetId);
-                        const toggleIcon = header.querySelector('.expand-toggle');
-
-                        if (targetElement) {
-                            targetElement.classList.toggle('hidden');
-                            toggleIcon.classList.toggle('expanded');
-                            console.log(`Elemento ${targetId} agora ${targetElement.classList.contains('hidden') ? 'oculto' : 'visível'}`);
-                        } else {
-                            console.error(`Elemento com ID ${targetId} não encontrado.`);
-                        }
-                    });
-                });
-            }
-        }
-
-        function showSegment(segmentId) {
-            segmentContents.forEach(segment => {
-                segment.classList.add('hidden');
-            });
-            navButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            const activeSegmentKey = segmentId.replace('segment-', '');
-
-            const activeSegmentElement = document.getElementById(segmentId);
-            const activeButton = document.getElementById(`nav-${activeSegmentKey}`);
-
-            if (activeSegmentElement) {
-                activeSegmentElement.classList.remove('hidden');
-                activeSegmentId = segmentId;
-                renderDashboards(activeSegmentKey, searchInput.value);
-            }
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
-        }
-
-        navButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const segmentId = `segment-${event.target.id.replace('nav-', '')}`;
-                showSegment(segmentId);
-            });
-        });
-
-        searchInput.addEventListener('input', () => {
-            const currentSegmentKey = activeSegmentId.replace('segment-', '');
-            renderDashboards(currentSegmentKey, searchInput.value);
-        });
-
-        // Inicializa o segmento de vendas ao carregar a página
-        showSegment('segment-vendas');
-
-        btnFaq.addEventListener('click', () => {
-            faqModal.classList.remove('hidden');
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            faqModal.classList.add('hidden');
-        });
-
-        faqModal.addEventListener('click', (event) => {
-            if (event.target === faqModal) {
-                faqModal.classList.add('hidden');
-            }
-        });
-    </script>
+    <footer>
+        <p>&copy; 2025 - Infra.Data - Todos os direitos reservados.</p>
+    </footer>
 </body>
 
 </html>
-```
